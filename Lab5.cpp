@@ -1,3 +1,14 @@
+/*
+Jaxson Dencklau
+Computer Science 
+11/10/2026
+Lab5 guessing game
+
+This program is a guessing game where the user has to guess a random number between 1 and 100. 
+The user can choose how many guesses they want to have, and the program will give them feedback on whether their guess is too high or too low.
+The program keeps track of the number of wins and losses, and prompts the user to play again after each game.
+
+*/
 #include <iostream>
 #include <time.h>
 #include <iomanip>
@@ -12,26 +23,45 @@ int number;
 int wins = 0;
 int losses = 0;
 
-// Function Prototypes
-//Start game, this function will display the rules of the game to the user
+
+//Precondition: None
+//Postcondition: Displays the rules of the game to the user
 void startgame();
-// High guess, this function will display a message to the user that their guess was too high
+
+//Precondition: the user has made a guess and the guess is higher than the random number
+//Postcondition: Displays a message to the user that their guess was too high
 void highguess(int guess);
-// Low guess, this function will display a message to the user that their guess was too low
+
+//Precondition: the user has made a guess and the guess is lower than the random number
+//Postcondition: Displays a message to the user that their guess was too low
 void lowguess(int guess);
-// Reset, this function will reset the game and generate a new random number
+
+//Precondition: The user has won or lost the game, or is starting a new game
+//Postcondition: Resets the random number and the amount of guesses the user has
 void startgame();
-// New guess, this function will prompt the user for a new guess
+
+//Precondition: The user has won or lost the game, or is starting a new game
+//Postcondition: Resets the random number and the amount of guesses the user has
 void reset();
-// Winner, this function will display a message to the user that they have won the game
+
+//Precondition: The user has made a guess
+//Postcondition: Displays a prompt to the user to enter a new guess
 void newguess();
-// Loser, this function will display a message to the user that they have lost the game
+
+//Precondition: The user has won the game
+//Postcondition: Displays a message to the user that they have won the game
 void winner();
-// Loser, this function will display a message to the user that they have lost the game
+
+//Precondition: The user has lost the game
+//Postcondition: Displays a message to the user that they have lost the game
 void loser();
-// Closing, this function will display a message to the user that they have exited the game
+
+//Precondition: The user has exited the game
+//Postcondition: Displays a message to the user that they have exited the game
 void closing();
-// Play again, this function will prompt the user to play again
+
+//Precondition: The user has won or lost the game
+//Postcondition: Displays a message to the user that they have won or lost the game and prompts them to play again
 void playagain();
 
 int main()
@@ -71,7 +101,7 @@ int main()
         }
         playagain();
     } while (again == 1);
-	if (again != 1)
+	if (again == 0)
 	{
         closing();
 	}
@@ -96,7 +126,7 @@ void highguess(int guess)
 	cout << "\n" << guess << " is too high! ";
     return;
 }
-
+//displays the rules of the game to the user
 void startgame()
 {
 	cout << "You have 20 attempts to guess the number between 1 and 100." << endl;
@@ -203,7 +233,7 @@ void loser()
 	}
 	losses++;
 }
-
+//displays a message from one of the options and displays the total wins and losses
 void closing()
 {
 	switch(rand() % 10 + 1)
@@ -242,7 +272,8 @@ void closing()
     cout << "Total wins: " << wins << endl;
     cout << "Total losses: " << losses << endl;
 }
-
+// Displays a message from one of the options and prompts the user to play again
+// If the user enters a number other than 1 or 0, it will prompt them to enter a valid number for playing again
 void playagain()
 {
 	switch (rand() % 10 + 1)
